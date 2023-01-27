@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "streaming-service": {
+    "streaming-service-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/streaming-service",
+            "outputPath": "dist/streaming-service-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "streaming-service:build:production"
+              "browserTarget": "streaming-service-frontend:build:production"
             },
             "development": {
-              "browserTarget": "streaming-service:build:development"
+              "browserTarget": "streaming-service-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "streaming-service:build"
+            "browserTarget": "streaming-service-frontend:build"
           }
         },
         "test": {
