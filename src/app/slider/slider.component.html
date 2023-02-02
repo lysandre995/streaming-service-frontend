@@ -1,0 +1,13 @@
+<div class="slide-picture-container">
+  <button class="slider-control-left prev" (click)="onLeftArrowClicked()">
+    <fa-icon [icon]="faChevronLeft"></fa-icon>
+  </button>
+  <ng-container *ngFor="let slide of slides">
+    <div class="slide-picture">
+      <img alt="" src="{{slide}}">
+    </div>
+  </ng-container>
+  <button class="slider-control-right next" (click)="onRightArrowClicked()">
+    <fa-icon [icon]="faChevronRight"></fa-icon>
+  </button>
+</div>

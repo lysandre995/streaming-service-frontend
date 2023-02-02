@@ -1,0 +1,13 @@
+<!-- carousel -->
+<div class="carousel">
+  <button class="carousel-control prev" (click)="onLeftArrowClicked()">
+    <fa-icon [icon]="faChevronLeft"></fa-icon>
+  </button>
+  <div class="slide-container">
+    <img alt="" [src]="slides[actualIndex].src" class="slide" />
+    <div class="bottom-left-text">Placeholder</div>
+  </div>
+  <button class="carousel-control next" (click)="onRightArrowClicked()">
+    <fa-icon [icon]="faChevronRight"></fa-icon>
+  </button>
+</div>

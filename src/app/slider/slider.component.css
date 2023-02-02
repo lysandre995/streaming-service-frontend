@@ -1,0 +1,27 @@
+.slide-picture {
+  display: inline;
+}
+
+.slide-picture-container {
+  max-width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.slider-control-left {
+  background-color: transparent;
+  font-size: xxx-large;
+  height: fit-content;
+  position: absolute;
+  left: 0;
+  top: 800px;
+}
+
+.slider-control-right {
+  background-color: transparent;
+  font-size: xxx-large;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+  top: 800px;
+}

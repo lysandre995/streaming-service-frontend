@@ -1,0 +1,10 @@
+.nav-bar-title {}
+
+.nav-bar-user a {
+  color: white;
+}
+
+.nav-bar-icon {
+  color: white;
+  margin-right: 10px;
+}
