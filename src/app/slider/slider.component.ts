@@ -20,6 +20,7 @@ export class SliderComponent {
     "/assets/images/tv-series/together_forever.png"
   ];
   public numberOfClicks = 0;
+  public scrollDelta = 0;
   public faChevronRight = faChevronRight;
   public faChevronLeft = faChevronLeft;
 

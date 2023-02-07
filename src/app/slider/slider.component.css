@@ -6,6 +6,8 @@
   max-width: 100%;
   overflow: auto;
   white-space: nowrap;
+  scrollbar-width: none;
+  position: relative;
 }
 
 .slide-picture-container::-webkit-scrollbar {
@@ -18,7 +20,7 @@
   height: fit-content;
   position: absolute;
   left: 0;
-  top: 800px;
+  top: 50%;
 }
 
 .slider-control-right {
@@ -27,5 +29,5 @@
   height: fit-content;
   position: absolute;
   right: 0;
-  top: 800px;
+  top: 50%;
 }
