@@ -20,6 +20,17 @@
   object-fit: cover;
 }
 
+.slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.slide-image.transparent {
+  opacity:0;
+}
+
 .carousel-control {
   background-color: transparent;
   font-size: xxx-large;
@@ -27,6 +38,7 @@
 }
 
 .bottom-left-text {
+  display: initial;
   position: absolute;
   bottom: 8px;
   left: 16px;
@@ -36,4 +48,9 @@
     2px -2px 0 #000,
     -2px 2px 0 #000,
     2px 2px 0 #000;
+  z-index: 1;
+}
+
+.bottom-left-text.transparent {
+  display: none;
 }

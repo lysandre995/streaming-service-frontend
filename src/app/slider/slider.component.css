@@ -8,6 +8,10 @@
   white-space: nowrap;
 }
 
+.slide-picture-container::-webkit-scrollbar {
+  display: none;
+}
+
 .slider-control-left {
   background-color: transparent;
   font-size: xxx-large;

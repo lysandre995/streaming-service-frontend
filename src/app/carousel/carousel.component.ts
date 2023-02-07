@@ -21,7 +21,21 @@ export class CarouselComponent {
     "/assets/images/tv-series/the_unwritten_pages.png",
     "/assets/images/tv-series/together_forever.png"
   ];
-  public slides: {src: string}[] = [];
+  public movieTitles = [
+    "Nightmares Unfold",
+    "The Bounty Hunters",
+    "The Imaginary Realm",
+    "The Romantic Journey",
+    "The Shadow of Evil"
+  ]
+  public tvSeriesTitles = [
+    "A Page In Time",
+    "The Noir Nights",
+    "Together Forever",
+    "The Unwritten Pages",
+    "The Laugh Riot"
+  ]
+  public slides: {src: string, title: string}[] = [];
   public actualIndex = 0;
   public faChevronRight = faChevronRight;
   public faChevronLeft = faChevronLeft;
@@ -34,20 +48,38 @@ export class CarouselComponent {
     for (let i = 0; i < 3; i++) {
       const movieSlideIndex = Math.floor(Math.random() * (this.movieSlides.length - 1))
       const tvSeriesSlideIndex = Math.floor(Math.random() * (this.tvSeriesSlides.length - 1))
-      this.slides.push({ src: this.movieSlides[movieSlideIndex] })
-      this.slides.push({ src: this.tvSeriesSlides[tvSeriesSlideIndex] })
+      const movieTitlesIndex = Math.floor(Math.random() * (this.movieTitles.length - 1))
+      const tvSeriesTitlesIndex = Math.floor(Math.random() * (this.tvSeriesTitles.length - 1))
+      this.slides.push({ src: this.movieSlides[movieSlideIndex], title: this.movieTitles[movieTitlesIndex] })
+      this.slides.push({ src: this.tvSeriesSlides[tvSeriesSlideIndex], title: this.tvSeriesTitles[tvSeriesTitlesIndex] })
     }
   }
 
   public onRightArrowClicked() {
     if (this.actualIndex < this.slides.length - 1) {
+      const previousImage = document.querySelector(`.image-${this.actualIndex}`);
+      previousImage?.classList.toggle("transparent");
+      const previousTitle = document.querySelector(`.text-${this.actualIndex}`);
+      previousTitle?.classList.toggle("transparent");
       this.actualIndex++;
+      const nextImage = document.querySelector(`.image-${this.actualIndex}`);
+      nextImage?.classList.toggle("transparent");
+      const nextTitle = document.querySelector(`.text-${this.actualIndex}`);
+      nextTitle?.classList.toggle("transparent");
     }
   }
 
   public onLeftArrowClicked() {
     if (this.actualIndex > 0) {
+      const previousImage = document.querySelector(`.image-${this.actualIndex}`);
+      previousImage?.classList.toggle("transparent");
+      const previousTitle = document.querySelector(`.text-${this.actualIndex}`);
+      previousTitle?.classList.toggle("transparent");
       this.actualIndex--;
+      const nextImage = document.querySelector(`.image-${this.actualIndex}`);
+      nextImage?.classList.toggle("transparent");
+      const nextTitle = document.querySelector(`.text-${this.actualIndex}`);
+      nextTitle?.classList.toggle("transparent");
     }
   }
 }
