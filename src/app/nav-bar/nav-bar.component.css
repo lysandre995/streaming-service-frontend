@@ -1,5 +1,44 @@
 .nav-bar-title {}
 
+.nav-bar-container {
+  width: 100%;
+  height: 68px;
+  background-color: black;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-bar-container h1 {
+  color: white;
+  margin: 0;
+}
+
+.menu-list-container {
+  display: flex;
+  list-style-type: none;
+}
+
+.menu-list-container li {
+  margin: 0 20px;
+}
+
+.menu-list-container li div::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+}
+
+.menu-list-container li div:hover::after {
+  width: 100%;
+}
+
 .nav-bar-user a {
   color: white;
 }
@@ -7,4 +46,9 @@
 .nav-bar-icon {
   color: white;
   margin-right: 10px;
+}
+
+.nav-menu-text {
+  color: white;
+  display: inline-block;
 }

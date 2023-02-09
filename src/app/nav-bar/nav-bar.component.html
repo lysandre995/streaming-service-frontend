@@ -1,7 +1,36 @@
-<div class="nav-bar-title">
-  <a [routerLink]="['/']">
-    <h1>Streaming Service</h1>
-  </a>
-</div>
+<div class="nav-bar-container">
+  <div class="nav-bar-title">
+    <a [routerLink]="['/']">
+      <h1>Streaming Service</h1>
+    </a>
+  </div>
 
-<div class="nav-bar-user"><a><fa-icon [icon]="faUser" class="nav-bar-icon"></fa-icon>Yasmin Mu Rennell</a></div>
+  <ul class="menu-list-container">
+    <li>
+      <fa-icon [icon]="faHome" class="nav-bar-icon"></fa-icon>
+      <div class="nav-menu-text">HOME</div>
+    </li>
+    <li>
+      <fa-icon [icon]="faSearch" class="nav-bar-icon"></fa-icon>
+        <div class="nav-menu-text">SEARCH</div>
+    </li>
+    <li>
+      <fa-icon [icon]="faPlus" class="nav-bar-icon"></fa-icon>
+        <div class="nav-menu-text">WATCHLIST</div>
+    </li>
+    <li>
+      <fa-icon [icon]="faStar" class="nav-bar-icon"></fa-icon>
+        <div class="nav-menu-text">ORIGINALS</div>
+    </li>
+    <li>
+      <fa-icon [icon]="faFilm" class="nav-bar-icon"></fa-icon>
+        <div class="nav-menu-text">MOVIES</div>
+    </li>
+    <li>
+      <fa-icon [icon]="faTelevision" class="nav-bar-icon"></fa-icon>
+      <div class="nav-menu-text">SERIES</div>
+    </li>
+  </ul>
+
+  <div class="nav-bar-user"><a><fa-icon [icon]="faUser" class="nav-bar-icon"></fa-icon>Yasmin Mu Rennell</a></div>
+</div>
