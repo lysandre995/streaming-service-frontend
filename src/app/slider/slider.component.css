@@ -31,3 +31,25 @@
   right: 0;
   top: 50%;
 }
+
+.button-overlay {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-overlay .next {
+  position: relative;
+}
+
+.button-overlay .prev {
+  position: relative;
+}
+
+.slider-component-container {
+  position: relative;
+  width: 100%;
+}

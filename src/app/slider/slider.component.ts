@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -7,6 +7,9 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent {
+  @Input()
+  id: any;
+
   public slides = [
     '/assets/images/movies/nightmares_unfold.png',
     '/assets/images/movies/the_bounty_hunters.png',
@@ -28,7 +31,7 @@ export class SliderComponent {
     if (this.numberOfClicks < 7) {
       this.numberOfClicks++;
     }
-    const slidePictureContainer = document.querySelector('.slide-picture-container');
+    const slidePictureContainer = document.querySelector(`.slide-picture-container-${this.id}`);
     console.log(slidePictureContainer);
     slidePictureContainer?.scroll({left: 500 * this.numberOfClicks})
   }
@@ -37,7 +40,7 @@ export class SliderComponent {
     if (this.numberOfClicks > 0) {
       this.numberOfClicks--;
     }
-    const slidePictureContainer = document.querySelector('.slide-picture-container');
+    const slidePictureContainer = document.querySelector(`.slide-picture-container-${this.id}`);
     console.log(slidePictureContainer);
     slidePictureContainer?.scroll({left: 500 * this.numberOfClicks})
   }
