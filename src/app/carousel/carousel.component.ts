@@ -29,7 +29,7 @@ export class CarouselComponent {
     "The Shadow of Evil"
   ]
   public tvSeriesTitles = [
-    "A Page In Time",
+    "A Page In Time ",
     "The Noir Nights",
     "Together Forever",
     "The Unwritten Pages",
