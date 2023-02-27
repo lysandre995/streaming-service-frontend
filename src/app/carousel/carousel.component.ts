@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { MovieService } from "../services/movie.service";
+import { MovieDto } from "../dto/movie.dto";
+import { TvSeriesDto } from "../dto/tv-series.dto";
+import { TvSeriesService } from "../services/tv-series.service";
 
 @Component({
   selector: 'app-carousel',
@@ -7,51 +11,48 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent {
-  public movieSlides = [
-    '/assets/images/movies/nightmares_unfold.png',
-    '/assets/images/movies/the_bounty_hunters.png',
-    '/assets/images/movies/the_imaginary_realm.png',
-    '/assets/images/movies/the_romantic_journey.png',
-    '/assets/images/movies/the_shadow_of_evil.png'
-  ];
-  public tvSeriesSlides =  [
-    "/assets/images/tv-series/a_page_in_time.png",
-    "/assets/images/tv-series/the_noir_nights.png",
-    "/assets/images/tv-series/the_laugh_riot.png",
-    "/assets/images/tv-series/the_unwritten_pages.png",
-    "/assets/images/tv-series/together_forever.png"
-  ];
-  public movieTitles = [
-    "Nightmares Unfold",
-    "The Bounty Hunters",
-    "The Imaginary Realm",
-    "The Romantic Journey",
-    "The Shadow of Evil"
-  ]
-  public tvSeriesTitles = [
-    "A Page In Time ",
-    "The Noir Nights",
-    "Together Forever",
-    "The Unwritten Pages",
-    "The Laugh Riot"
-  ]
+  public movies: MovieDto[] = [];
+  public tvSeries: TvSeriesDto[] = [];
   public slides: {src: string, title: string}[] = [];
   public actualIndex = 0;
   public faChevronRight = faChevronRight;
   public faChevronLeft = faChevronLeft;
 
-  public constructor() {
-    this.getSlides()
+  public constructor(private readonly movieService: MovieService, private readonly tvSeriesService: TvSeriesService) {
   }
 
-  private getSlides() {
+  async ngOnInit() {
+    this.movies = await this.movieService.getMovies();
+    this.tvSeries = await this.tvSeriesService.getTvSeries();
+    await this.getSlides();
+  }
+
+
+  private async getSlides() {
+    const moviesIndexes = new Set<number>();
+    const tvSeriesIndexes = new Set<number>();
+
     for (let i = 0; i < 3; i++) {
-      const movieSlideIndex = Math.floor(Math.random() * (this.movieSlides.length - 1))
-      const tvSeriesSlideIndex = Math.floor(Math.random() * (this.tvSeriesSlides.length - 1))
-      const movieTitlesIndex = Math.floor(Math.random() * (this.movieTitles.length - 1))
-      const tvSeriesTitlesIndex = Math.floor(Math.random() * (this.tvSeriesTitles.length - 1))
-      this.slides.push({ src: this.movieSlides[movieSlideIndex], title: this.movieTitles[movieTitlesIndex] })
-      this.slides.push({ src: this.tvSeriesSlides[tvSeriesSlideIndex], title: this.tvSeriesTitles[tvSeriesTitlesIndex] })
+      let movieIndexDraw;
+      do {
+        movieIndexDraw = Math.floor(Math.random() * (this.movies.length - 1));
+      } while (moviesIndexes.has(movieIndexDraw))
+      moviesIndexes.add(movieIndexDraw);
+      let tvSeriesIndexDraw;
+      do {
+        tvSeriesIndexDraw = Math.floor(Math.random() * (this.tvSeries.length - 1));
+      } while (tvSeriesIndexes.has(tvSeriesIndexDraw))
+      tvSeriesIndexes.add(tvSeriesIndexDraw);
+    }
+
+    for (const index of Array.from(moviesIndexes)) {
+      const formattedTitle = this.movies[index].title.toLowerCase().trim().replace(/ /g, '_')
+      this.slides.push({ src: `/assets/images/movies/${formattedTitle}.png`, title: this.movies[index].title });
+    }
+
+    for (const index of Array.from(tvSeriesIndexes)) {
+      const formattedTitle = this.tvSeries[index].title.toLowerCase().trim().replace(/ /g, '_')
+      this.slides.push({ src: `/assets/images/tv-series/${formattedTitle}.png`, title: this.tvSeries[index].title });
     }
   }
 
