@@ -1,5 +1,6 @@
 .slide-picture {
   display: inline;
+  position:relative;
 }
 
 .slide-picture-container {
@@ -8,6 +9,18 @@
   white-space: nowrap;
   scrollbar-width: none;
   position: relative;
+}
+
+.bottom-left-picture-title {
+  color: white;
+  display: initial;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: x-large;
+  text-shadow:
+    2px 2px  #000;
+  z-index: 1;
 }
 
 .slide-picture-container::-webkit-scrollbar {
@@ -35,7 +48,7 @@
 .button-overlay {
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 40%;
   z-index: 1;
   display: flex;
   justify-content: space-between;
@@ -52,4 +65,17 @@
 .slider-component-container {
   position: relative;
   width: 100%;
+}
+
+.slider-component-container img {
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+  margin: 0 10px;
+}
+
+.genre-title-style {
+  color: white;
+  font-size: 32px;
+  padding: 15px 20px;
 }

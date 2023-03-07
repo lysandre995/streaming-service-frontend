@@ -1,8 +1,10 @@
+<div class="genre-title-style">{{genre}}</div>
 <div class="slider-component-container">
   <div class="slide-picture-container" [ngClass]="'slide-picture-container-'+id">
     <ng-container *ngFor="let slide of slides">
       <div class="slide-picture">
-        <img alt="" src="{{slide}}">
+        <img alt="" src="{{slide.src}}">
+        <div class="bottom-left-picture-title">{{slide.title}}</div>
       </div>
     </ng-container>
   </div>

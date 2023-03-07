@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from 'rxjs';
-import { MovieDto } from "../dto/movie.dto";
 import { constants } from "../constants";
 import { TvSeriesDto } from "../dto/tv-series.dto";
+import { GenreEnum } from "../enums/genre-enum";
 const axios = require("axios").default;
 
 @Injectable({
@@ -14,8 +12,8 @@ export class TvSeriesService {
   constructor() {
   }
 
-  public async getTvSeries(): Promise<TvSeriesDto[]> {
-    const bla = await axios.get(constants.tvSeriesEndpoint);
+  public async getTvSeries(genre?: GenreEnum): Promise<TvSeriesDto[]> {
+    const bla = await axios.get(constants.tvSeriesEndpoint, { params: { genre } });
     return bla.data;
   }
 }

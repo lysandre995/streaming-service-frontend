@@ -25,6 +25,7 @@
   top: 0;
   left: 0;
   transition: opacity 0.6s ease-in-out;
+  border-radius: 20px;
 }
 
 .slide-image.transparent {
@@ -44,9 +45,6 @@
   left: 16px;
   font-size: xxx-large;
   text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
     2px 2px 0 #000;
   z-index: 1;
 }

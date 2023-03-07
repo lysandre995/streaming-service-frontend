@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GenreEnum } from "./enums/genre-enum";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'streaming-service-frontend';
+
+  public get GenreEnum(): typeof GenreEnum {
+    return GenreEnum;
+  }
 }

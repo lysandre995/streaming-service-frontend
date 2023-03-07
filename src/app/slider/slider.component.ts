@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { GenreEnum } from "../enums/genre-enum";
+import { MovieService } from "../services/movie.service";
+import { TvSeriesService } from "../services/tv-series.service";
+import { MovieDto } from "../dto/movie.dto";
+import { TvSeriesDto } from "../dto/tv-series.dto";
 
 @Component({
   selector: 'app-slider',
@@ -9,23 +14,26 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
 export class SliderComponent {
   @Input()
   id: any;
+  @Input()
+  genre: any;
 
-  public slides = [
-    '/assets/images/movies/nightmares_unfold.png',
-    '/assets/images/movies/the_bounty_hunters.png',
-    '/assets/images/movies/the_imaginary_realm.png',
-    '/assets/images/movies/the_romantic_journey.png',
-    '/assets/images/movies/the_shadow_of_evil.png',
-    "/assets/images/tv-series/a_page_in_time.png",
-    "/assets/images/tv-series/the_noir_nights.png",
-    "/assets/images/tv-series/the_laugh_riot.png",
-    "/assets/images/tv-series/the_unwritten_pages.png",
-    "/assets/images/tv-series/together_forever.png"
-  ];
+  public slides: { src: string, title: string }[] = [];
+  public movies: MovieDto[] = [];
+  public tvSeries: TvSeriesDto[] = [];
   public numberOfClicks = 0;
   public scrollDelta = 0;
   public faChevronRight = faChevronRight;
   public faChevronLeft = faChevronLeft;
+
+  constructor(private readonly movieService: MovieService, private readonly tvSeriesService: TvSeriesService) {
+  }
+
+  async ngOnInit() {
+    this.movies = await this.movieService.getMovies(this.genre);
+    this.tvSeries = await this.tvSeriesService.getTvSeries(this.genre);
+    this.getSlides();
+    console.log(this.slides);
+  }
 
   public onRightArrowClicked() {
     if (this.numberOfClicks < 7) {
@@ -43,5 +51,17 @@ export class SliderComponent {
     const slidePictureContainer = document.querySelector(`.slide-picture-container-${this.id}`);
     console.log(slidePictureContainer);
     slidePictureContainer?.scroll({left: 500 * this.numberOfClicks})
+  }
+
+  private getSlides() {
+    for (const movie of this.movies) {
+      const formattedTitle = movie.title.toLowerCase().trim().replace(/ /g, '_')
+      this.slides.push({ src: `/assets/images/movies/${formattedTitle}.png`, title: movie.title });
+    }
+
+    for (const tvSeries of this.tvSeries) {
+      const formattedTitle = tvSeries.title.toLowerCase().trim().replace(/ /g, '_')
+      this.slides.push({ src: `/assets/images/tv-series/${formattedTitle}.png`, title: tvSeries.title });
+    }
   }
 }
