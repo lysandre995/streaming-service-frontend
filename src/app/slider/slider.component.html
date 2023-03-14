@@ -3,7 +3,7 @@
   <div class="slide-picture-container" [ngClass]="'slide-picture-container-'+id">
     <ng-container *ngFor="let slide of slides">
       <div class="slide-picture">
-        <img alt="" src="{{slide.src}}">
+        <img class="slide-picture-img" width=400 height=400 alt="" src="{{slide.src}}">
         <div class="bottom-left-picture-title">{{slide.title}}</div>
       </div>
     </ng-container>

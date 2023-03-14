@@ -36,12 +36,15 @@ export class SliderComponent {
   }
 
   public onRightArrowClicked() {
-    if (this.numberOfClicks < 7) {
+    if (this.numberOfClicks < this.slides.length - 1) {
       this.numberOfClicks++;
     }
     const slidePictureContainer = document.querySelector(`.slide-picture-container-${this.id}`);
     console.log(slidePictureContainer);
-    slidePictureContainer?.scroll({left: 500 * this.numberOfClicks})
+    const slidePictureImage = document.querySelectorAll('.slide-picture-img');
+    const leftScroll = parseInt(slidePictureImage.item(0).getAttribute('width')!) + 20 ?? 420;
+    console.log(leftScroll * this.numberOfClicks)
+    slidePictureContainer?.scroll({left: leftScroll * this.numberOfClicks})
   }
 
   public onLeftArrowClicked() {
@@ -50,7 +53,10 @@ export class SliderComponent {
     }
     const slidePictureContainer = document.querySelector(`.slide-picture-container-${this.id}`);
     console.log(slidePictureContainer);
-    slidePictureContainer?.scroll({left: 500 * this.numberOfClicks})
+    const slidePictureImage = document.querySelectorAll('.slide-picture-img');
+    const leftScroll = parseInt(slidePictureImage.item(0).getAttribute('width')!) + 20 ?? 420;
+    console.log(leftScroll * this.numberOfClicks)
+    slidePictureContainer?.scroll({left: leftScroll * this.numberOfClicks})
   }
 
   private getSlides() {
